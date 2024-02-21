@@ -1,0 +1,4 @@
+- possibilites of implementing download feature
+  - Extracting the object data of the user user edited template
+  - And sending that to the server, maybe storing in the db
+  - Then ssr the template and make it downloadable
