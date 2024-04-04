@@ -52,7 +52,7 @@ const LandingPage = () => {
       .then(() => templateInit())
       .then(() => router.push("/builder"))
       .finally(() => {
-        downloadToggle();
+        downloadToggle(true);
         setIsLoading(false);
       });
     // fetch(`/api/gpt?prompt=${prompt}`)

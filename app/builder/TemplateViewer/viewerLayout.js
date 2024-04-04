@@ -5,6 +5,7 @@ import useTemplateDataStore from "@/app/store/templateDataStore";
 
 const TemplateLayout = () => {
   const data = useTemplateDataStore((state) => state.templateData);
+  console.log("viewerLayout data", data);
 
   // const template2 = () => {
   //   return <div>Template 2</div>;

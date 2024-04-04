@@ -6,14 +6,20 @@
 import { motion } from "framer-motion";
 import useTemplateDataStore from "@/app/store/templateDataStore";
 import exportFromJSON from "export-from-json";
-import { useState } from "react";
+import AuthNavBtn from "@/components/AuthNavBtn";
+// import { cookies } from "next/headers";
+import { useSession } from "next-auth/react";
 
 const animation = {
   initial: { x: 25, opacity: 0 },
   animate: { x: 0, opacity: 1 },
 };
 
+const handleDownload = async () => {};
+
 const NavBar = () => {
+  const session = useSession();
+  console.log("session nextauth", session);
   const downloadToggle = useTemplateDataStore((state) => state.toggle);
   console.log("downloadToggle", downloadToggle);
   const templateData = useTemplateDataStore((state) => state.templateData);
@@ -53,6 +59,14 @@ const NavBar = () => {
     //   }
     // const blob = new Blob([JSON.stringify(templateData,null,2)], { type: "text/plain" });
     // const url = URL.createObjectURL(blob);
+
+    // cookies().set({
+    //   name: "TemplateData",
+    //   value: templateData,
+    //   httpOnly: true,
+    //   path: "/template",
+    // });
+
     exportFromJSON({
       data: templateData,
       fileName: "JsonData",
@@ -177,21 +191,21 @@ const NavBar = () => {
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                   aria-current="page"
                 >
-                  Home
+                  {session.data?.user.name}
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
+                  onClick={() => handleDownload()}
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  About
-                </a>
+                  Download Template File
+                </button>
               </li>
               {downloadToggle && (
                 <li>
                   <button
-                    onClick={onClickDownload}
+                    onClick={() => onClickDownload()}
                     //   href="#"
                     className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
@@ -201,6 +215,10 @@ const NavBar = () => {
               )}
             </ul>
           </div>
+        </div>
+
+        <div className="text-white">
+          <AuthNavBtn />
         </div>
       </nav>
     </motion.div>

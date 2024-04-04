@@ -12,6 +12,23 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/api/templateSSR",
+        headers: [
+          {
+            key: "Content-Disposition",
+            value: "attachment; filename=template.html",
+          },
+          {
+            key: "Content-Type",
+            value: "text/html",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

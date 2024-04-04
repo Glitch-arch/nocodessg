@@ -24,9 +24,9 @@ const useTemplateDataStore = create(
 
             ftitle1: data.features[0].feature1,
             ftitle2: data.features[1].feature2,
-            FeatureSectionImage1:
+            featureSectionImage1:
               "https://kinsta.com/wp-content/uploads/2020/08/tiger-jpg.jpg",
-            FeatureSectionImage2:
+            featureSectionImage2:
               "https://kinsta.com/wp-content/uploads/2020/08/tiger-jpg.jpg",
             fdescription1: data.features[0].detail1,
             fdescription2: data.features[1].detail2,

@@ -9,7 +9,7 @@ import { NextResponse, NextRequest } from "next/server";
 // const apiKey = import.meta.env.VITE_apiKey;
 // console.log("api", apiKey);
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 const exampleJson = {
@@ -90,7 +90,8 @@ export async function GET(req, res) {
     // const prompt = payload.prompt;
     console.log("prompt in server", prompt);
     const gptRes = await GPT(prompt);
-    // console.log("gptRes", gptRes);
+    console.log("gptRes", gptRes);
+    console.log(typeof gptRes);
     return Response.json({ gptRes });
   } catch (error) {
     console.log("Server side logic Failed ", error);

@@ -4,8 +4,9 @@
 import Image from "next/image";
 // import useTemplateDataStore from "@/app/store/templateDataStore";
 
-const Template1 = (data) => {
+const Template1 = ({ data }) => {
   // const data = useTemplateDataStore((state) => state.templateData);
+  console.log("templateData", data, typeof data);
   const {
     title,
     tagline,
@@ -13,9 +14,8 @@ const Template1 = (data) => {
     description,
 
     heroSectionImage,
-    FeatureSectionImage1,
-    FeatureSectionImage2,
-
+    featureSectionImage1,
+    featureSectionImage2,
     ftitle1,
     ftitle2,
     fdescription1,
@@ -83,11 +83,11 @@ const Template1 = (data) => {
 
       <section className="flex flex-col p-1 gap-7  justify-center items-center">
         <div className="flex gap-14 justify-center items-center w-2/3 ">
-          {FeatureSectionImage1 && (
+          {featureSectionImage1 && (
             <Image
               // onDragOver={(e) => e.preventDefault()}
               // onDrop={(e) => handleDrop(setImage2, e)}
-              src={FeatureSectionImage1}
+              src={featureSectionImage1}
               width={300}
               height={300}
               // placeholder="blur"
@@ -112,7 +112,7 @@ const Template1 = (data) => {
             height={300}
             // placeholder="blur"
             className="rounded-lg cursor-pointer shadow-xl w-2/5"
-            src={FeatureSectionImage2}
+            src={featureSectionImage2}
             alt="Feature Section1 Image"
           />
         </div>
