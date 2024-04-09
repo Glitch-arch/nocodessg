@@ -1,6 +1,7 @@
-import generateHtml from "@/app/utils/generateHTML";
+// import generateHtml from "@/app/utils/generateHTML";
 
-export default async function GET(req, res) {
-  const templateHTML = fetch("/template/template1");
+export async function GET(req, res) {
+  const templateHTML = await fetch("/template/template1");
+  console.log("logging template fetch ", templateHTML);
   return new Response(templateHTML);
 }

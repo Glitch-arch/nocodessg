@@ -1,8 +1,16 @@
 "use client";
 import { signIn } from "next-auth/react";
+// import { redirect } from "next/navigation";
 import React from "react";
+import { getServerSession } from "next-auth";
+// import { useRouter } from "next/router";
 
 const signInPage = () => {
+  // const router = useRouter();
+  // const session = await getServerSession();
+  // if (session) {
+  //   redirect("/");
+  // }
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -47,6 +55,8 @@ const signInPage = () => {
         />
 
         <button>Submit</button>
+
+        {/* <button onClick={router.push("/signup")}>SignUp</button> */}
       </form>
     </div>
   );

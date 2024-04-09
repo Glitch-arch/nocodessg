@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 export const options = {
   pages: {
     signIn: "/signin",
-    // signUp: "/signup",
+    signUp: "/signup",
   },
   providers: [
     CredentialsProvider({

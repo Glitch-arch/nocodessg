@@ -9,6 +9,7 @@ import exportFromJSON from "export-from-json";
 import AuthNavBtn from "@/components/AuthNavBtn";
 // import { cookies } from "next/headers";
 import { useSession } from "next-auth/react";
+import { fileToRepo } from "../utils/githubApi.Implementation";
 
 const animation = {
   initial: { x: 25, opacity: 0 },
@@ -217,8 +218,9 @@ const NavBar = () => {
           </div>
         </div>
 
-        <div className="text-white">
+        <div className="text-white flex flex-col gap-4">
           <AuthNavBtn />
+          <button onClick={() => fileToRepo()}>HTMLFetchTest</button>
         </div>
       </nav>
     </motion.div>

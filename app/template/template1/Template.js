@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Template1 = ({ data }) => {
   // const data = useTemplateDataStore((state) => state.templateData);
-  console.log("templateData", data, typeof data);
+  // console.log("templateData", data, typeof data);
   const {
     title,
     tagline,
@@ -36,7 +36,7 @@ const Template1 = ({ data }) => {
   // const [image3, setImage3] = useState(
   //   "https://kinsta.com/wp-content/uploads/2020/08/tiger-jpg.jpg"
   // );
-  console.log("Logging in Template page: ", question2, answer2, question1);
+  // console.log("Logging in Template page: ", question2, answer2, question1);
 
   // const handleDrop = (setFn, e) => {
   //   e.preventDefault();
