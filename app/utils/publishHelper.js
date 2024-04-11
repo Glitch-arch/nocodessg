@@ -11,5 +11,6 @@ export const publishhelper = async (templateData) => {
   // tempalateHTML.data
   const call = templateDataToDB().then(() => exe());
   const res = call();
+  console.log(res);
   return res;
 };
