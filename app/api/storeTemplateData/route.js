@@ -1,5 +1,6 @@
 import dbConnect from "@/Libs/db.connect";
 import Template from "@/Models/User";
+import { getSession } from "next-auth/react";
 
 import { NextResponse } from "next/server";
 
@@ -33,24 +34,47 @@ const templateData = {
 
 export async function GET(req, res) {
   try {
+    dbConnect();
+    const session = await getSession({ req });
+    const userId = session.user.id;
+
+    const templateData = await Template.findOne({ userId });
+    if (templateData) {
+      return res.json({
+        success: true,
+        message: "Data retrieved",
+        data: templateData,
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: "No data found for this user",
+      });
+    }
     // Here it should fetch this template data from the mongoDB
     // const template = await Template.findOne({});
     return NextResponse.json({ templateData });
   } catch (error) {
     console.log("Error in StoreTemplateData route Handler", error);
+    return res.json({
+      success: false,
+      message: "An error occurred while retrieving the data",
+    });
   }
 }
 
 export async function POST(req, res) {
   try {
     dbConnect();
+    const session = await getSession({ req });
+    const userId = session.user.id;
     const data = await req.json();
     const template = data.data;
     console.log("Logging in templateAPI", template, data);
 
-    const findOne = await Template.findOne();
+    const findOne = await Template.findOne({ userId });
     if (findOne) {
-      const templateData = await Template.findOneAndReplace({});
+      const templateData = await Template.findOneAndReplace({ userId });
       return NextResponse.json({
         success: true,
         message: "Data created",
@@ -59,6 +83,7 @@ export async function POST(req, res) {
     } else {
       const templateData = await Template.create({
         templateData: { template },
+        userId,
       });
       console.log("MongoDb template return object", templateData);
       return NextResponse.json({

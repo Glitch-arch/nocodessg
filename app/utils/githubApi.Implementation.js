@@ -86,9 +86,17 @@ const createGithubPage = async (repoName) => {
   }
 };
 // createGithubPage();
-const exe = createRepo.then((repoName) =>
-  fetchingHTML(repoName)
-    .then(({ htmlContent, repoName }) => fileToRepo({ htmlContent, repoName }))
-    .then((repoName) => createGithubPage(repoName))
-);
+const exe = () => {
+  let res;
+  createRepo().then((repoName) =>
+    fetchingHTML(repoName)
+      .then(({ htmlContent, repoName }) =>
+        fileToRepo({ htmlContent, repoName })
+      )
+      .then((repoName) => (res = repoName), createGithubPage(repoName))
+  );
+
+  return res;
+};
+
 export default exe;

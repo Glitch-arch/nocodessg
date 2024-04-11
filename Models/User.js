@@ -5,6 +5,10 @@ const templateSchema = new Schema({
     type: Object,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
 });
 
 const Template =
