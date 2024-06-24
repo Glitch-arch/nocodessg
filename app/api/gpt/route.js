@@ -6,10 +6,10 @@ import { NextResponse, NextRequest } from "next/server";
 // Feature section - 2
 // FAQ Questions and Answers
 
-// const apiKey = import.meta.env.VITE_apiKey;
+const apiKey = import.meta.env.VITE_apiKey;
 // console.log("api", apiKey);
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: apiKey,
 });
 
 const exampleJson = {
